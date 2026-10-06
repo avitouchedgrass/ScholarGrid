@@ -1,0 +1,481 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400..800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-heading: 'Syne', sans-serif;
+}
+
+:root {
+  /* ─── DARK MODE: Deep Indigo-Midnight ─────────────────────────────── */
+  --canvas-bg:       #090c15;
+  --surface-bg:      #0f1420;
+  --surface-elevated:#161d2e;
+  --surface-hover:   #1c2540;
+  --surface-card:    #131929;
+
+  --border-subtle:   rgba(148, 163, 210, 0.05);
+  --border:          rgba(148, 163, 210, 0.10);
+  --border-hover:    rgba(148, 163, 210, 0.20);
+  --border-active:   rgba(148, 163, 210, 0.38);
+
+  /* Strict typographic hierarchy: crisp white → silver → accessible slate */
+  --text-primary:    #f1f5fb;
+  --text-secondary:  #94a3b8;
+  --text-muted:      #7e8fa8;   /* raised from #64748b to pass WCAG AA ~4.8:1 */
+
+  --accent-primary:  #f1f5fb;
+  --accent-text:     #090c15;
+
+  /* Atmospheric grid — barely visible texture */
+  --grid-line:       rgba(148, 163, 210, 0.028);
+  --grid-line-strong:rgba(148, 163, 210, 0.055);
+
+  --badge-bg:        rgba(148, 163, 210, 0.06);
+  --badge-border:    rgba(148, 163, 210, 0.14);
+  --badge-text:      #cbd5e1;
+
+  --radius: 4px;
+  --font-sans: 'Host Grotesk', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: 'Azeret Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-serif: Georgia, Cambria, 'Times New Roman', serif;
+  --font-heading: 'Syne', sans-serif;
+
+  /* Accent palette — calibrated for dark luminosity */
+  --emerald-accent:  #10b981;
+  --emerald-glow:    rgba(16, 185, 129, 0.10);
+  --emerald-border:  rgba(16, 185, 129, 0.28);
+
+  --indigo-accent:   #6366f1;
+  --indigo-glow:     rgba(99, 102, 241, 0.10);
+  --indigo-border:   rgba(99, 102, 241, 0.28);
+
+  --amber-accent:    #f59e0b;
+  --amber-glow:      rgba(245, 158, 11, 0.10);
+  --amber-border:    rgba(245, 158, 11, 0.28);
+
+  --blue-accent:     #3b82f6;
+  --blue-glow:       rgba(59, 130, 246, 0.10);
+  --blue-border:     rgba(59, 130, 246, 0.28);
+}
+
+/* Apply Syne to all heading elements and utilities */
+h1, h2, h3, h4, h5, h6, .font-heading {
+  font-family: 'Syne', var(--font-heading), sans-serif !important;
+}
+
+[data-theme="light"] {
+  /* ─── LIGHT MODE: Warm Parchment + Midnight Slate ─────────────────── */
+  --canvas-bg:       #f5f1ea;
+  --surface-bg:      #fdfaf5;
+  --surface-elevated:#ece6d9;
+  --surface-hover:   #e3ddd0;
+  --surface-card:    #ffffff;
+
+  --border-subtle:   rgba(50, 40, 28, 0.05);
+  --border:          rgba(50, 40, 28, 0.10);
+  --border-hover:    rgba(50, 40, 28, 0.20);
+  --border-active:   rgba(50, 40, 28, 0.38);
+
+  /* Midnight-slate headlines, clean slate-500 body */
+  --text-primary:    #0b0f19;
+  --text-secondary:  #64748b;
+  --text-muted:      #94a3b8;
+
+  --accent-primary:  #0b0f19;
+  --accent-text:     #fdfaf5;
+
+  /* Whisper grid */
+  --grid-line:       rgba(50, 40, 28, 0.030);
+  --grid-line-strong:rgba(50, 40, 28, 0.060);
+
+  --badge-bg:        rgba(50, 40, 28, 0.05);
+  --badge-border:    rgba(50, 40, 28, 0.12);
+  --badge-text:      #374151;
+
+  /* Accent palette — calibrated for light luminosity */
+  --emerald-accent:  #059669;
+  --emerald-glow:    rgba(5, 150, 105, 0.07);
+  --emerald-border:  rgba(5, 150, 105, 0.22);
+
+  --indigo-accent:   #4f46e5;
+  --indigo-glow:     rgba(79, 70, 229, 0.07);
+  --indigo-border:   rgba(79, 70, 229, 0.22);
+
+  --amber-accent:    #d97706;
+  --amber-glow:      rgba(217, 119, 6, 0.07);
+  --amber-border:    rgba(217, 119, 6, 0.22);
+
+  --blue-accent:     #2563eb;
+  --blue-glow:       rgba(37, 99, 235, 0.07);
+  --blue-border:     rgba(37, 99, 235, 0.22);
+}
+
+body {
+  background-color: var(--canvas-bg);
+  background-image:
+    linear-gradient(to right,  var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+  background-size: 36px 36px;
+  background-position: center top;
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+  transition:
+    background-color 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    color 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  text-wrap: balance;
+  letter-spacing: -0.03em;
+}
+
+p { text-wrap: pretty; }
+
+.font-mono {
+  font-family: var(--font-mono);
+  font-feature-settings: "tnum" 1, "zero" 1;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.015em;
+}
+
+.font-serif { font-family: var(--font-serif); }
+
+/* ─── CORE PANEL SYSTEM ───────────────────────────────────────────── */
+.arch-panel {
+  background-color: var(--surface-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  transition:
+    background-color 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.arch-panel-elevated {
+  background-color: var(--surface-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  transition:
+    background-color 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.arch-border {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.arch-badge {
+  background-color: var(--badge-bg);
+  border: 1px solid var(--badge-border);
+  color: var(--badge-text);
+  border-radius: var(--radius);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.03em;
+}
+
+.arch-grid-bg {
+  background-color: var(--canvas-bg);
+  background-image:
+    linear-gradient(to right,  var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+  background-size: 36px 36px;
+  background-position: center top;
+}
+
+/* ─── HERO ASYMMETRIC LAYOUT ──────────────────────────────────────── */
+
+.hero-headline {
+  font-family: 'Syne', sans-serif !important;
+  font-size: clamp(2.25rem, 4.75vw, 3.75rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  text-wrap: balance;
+}
+
+/* Inline ghost CTA — minimal arrow link */
+.cta-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+  font-size: 0.8125rem;
+  font-family: var(--font-mono);
+  color: var(--text-secondary);
+  text-decoration: none;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 1px;
+  transition: color 0.18s ease, border-color 0.18s ease;
+}
+.cta-ghost:hover {
+  color: var(--text-primary);
+  border-color: var(--border-hover);
+}
+
+/* ─── SCHOLARSHIP CARD VARIANTS ───────────────────────────────────── */
+
+.card-featured {
+  background-color: var(--surface-card);
+  border: 1px solid var(--emerald-border);
+  border-radius: var(--radius);
+  box-shadow:
+    0 0 0 1px var(--emerald-glow),
+    0 8px 32px rgba(0, 0, 0, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  transition:
+    background-color 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-secondary {
+  background-color: var(--surface-bg);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius);
+  opacity: 0.80;
+  transition:
+    background-color 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.18s ease;
+}
+.card-secondary:hover {
+  opacity: 1;
+  border-color: var(--border);
+}
+
+/* ─── FIT-SCORE TYPOGRAPHIC BADGES ────────────────────────────────── */
+
+.fit-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.fit-badge::before {
+  content: '';
+  display: block;
+  width: 2px;
+  height: 0.85em;
+  border-radius: 1px;
+  flex-shrink: 0;
+}
+
+.fit-badge-top { color: var(--emerald-accent); }
+.fit-badge-top::before { background: var(--emerald-accent); }
+
+.fit-badge-high { color: var(--indigo-accent); }
+.fit-badge-high::before { background: var(--indigo-accent); }
+
+.fit-badge-mid { color: var(--text-muted); }
+.fit-badge-mid::before { background: var(--text-muted); }
+
+/* ─── BENTO CARD ACCENTS ──────────────────────────────────────────── */
+
+.bento-emerald {
+  border-top: 2px solid var(--emerald-border);
+  box-shadow: inset 0 40px 70px var(--emerald-glow);
+  transition: border-color 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.bento-indigo {
+  border-top: 2px solid var(--indigo-border);
+  box-shadow: inset 0 40px 70px var(--indigo-glow);
+  transition: border-color 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.bento-amber {
+  border-top: 2px solid var(--amber-border);
+  box-shadow: inset 0 40px 70px var(--amber-glow);
+  transition: border-color 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.bento-neutral {
+  border-top: 2px solid var(--border);
+  transition: border-color 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ─── SECTION HEADING EDITORIAL PATTERN ──────────────────────────── */
+
+.section-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 0.75rem;
+}
+
+/* ─── FORM CONTROLS ───────────────────────────────────────────────── */
+input, select, textarea {
+  border-radius: var(--radius);
+  font-family: var(--font-sans);
+}
+
+button {
+  cursor: pointer;
+  border-radius: var(--radius);
+  font-family: var(--font-sans);
+}
+
+/* Architectural Focus States */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 1px solid var(--border-active);
+  outline-offset: 2px;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-hover);
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+/* Custom Text Selection */
+::selection {
+  background-color: var(--accent-primary);
+  color: var(--accent-text);
+}
+
+/* Tactile Micro-Interactions */
+button:active:not(:disabled) {
+  transform: scale(0.985);
+  transition: transform 60ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Precision Mechanical Range Slider */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: var(--surface-elevated);
+  border: 1px solid var(--border);
+  height: 8px;
+  border-radius: 2px;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+input[type="range"]:hover {
+  border-color: var(--border-hover);
+}
+input[type="range"]:focus-visible {
+  border-color: var(--border-active);
+  outline: 1px solid var(--border-active);
+  outline-offset: 2px;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  background: var(--text-primary);
+  border: 1px solid var(--border-active);
+  border-radius: 2px;
+  cursor: pointer;
+  transition: transform 0.12s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.12s ease;
+}
+input[type="range"]:active::-webkit-slider-thumb {
+  transform: scale(1.15);
+  background: var(--accent-primary);
+}
+input[type="range"]::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  background: var(--text-primary);
+  border: 1px solid var(--border-active);
+  border-radius: 2px;
+  cursor: pointer;
+  transition: transform 0.12s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.12s ease;
+}
+input[type="range"]:active::-moz-range-thumb {
+  transform: scale(1.15);
+  background: var(--accent-primary);
+}
+
+/* Architectural Scanline Ray */
+@keyframes scanlineSweep {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(350%); }
+}
+.scanline-ray {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 2px;
+  width: 30%;
+  background: linear-gradient(90deg, transparent, var(--text-primary), transparent);
+  animation: scanlineSweep 0.9s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+  pointer-events: none;
+}
+
+/* Modal & Overlay Motion Dynamics */
+@keyframes modalBackdropFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.modal-backdrop-animate {
+  animation: modalBackdropFadeIn 180ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes modalPanelScaleIn {
+  from { opacity: 0; transform: scale(0.975); }
+  to { opacity: 1; transform: scale(1); }
+}
+.modal-panel-animate {
+  animation: modalPanelScaleIn 220ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Drawer Motion Dynamics */
+@keyframes drawerSlideIn {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+.drawer-slide-in {
+  animation: drawerSlideIn 260ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Criteria Badge Mechanical Pop */
+@keyframes criteriaBadgePop {
+  0% { opacity: 0.4; transform: scale(0.94); }
+  100% { opacity: 1; transform: scale(1); }
+}
+.criteria-badge-flip {
+  animation: criteriaBadgePop 160ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Reduced Motion Override */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .scanline-ray {
+    display: none !important;
+  }
+}

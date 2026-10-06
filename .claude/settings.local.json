@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node \"C:\\\\Users\\\\raits\\\\.claude\\\\skills\\\\impeccable\\\\scripts\\\\context.mjs\" --target \"landing page\")",
+      "Bash(ls \"C:\\\\Users\\\\raits\\\\.claude\\\\skills\\\\impeccable\\\\scripts\\\\\" && echo \"=== concept-seed help ===\" && cd \"C:\\\\Users\\\\raits\\\\Desktop\\\\CODE PROJECTS!!!\\\\ScholarGrid\" && node \"C:\\\\Users\\\\raits\\\\.claude\\\\skills\\\\impeccable\\\\scripts\\\\concept-seed.mjs\" --help 2>&1 | head -40)",
+      "Bash(node 'C:\\\\Users\\\\raits\\\\.claude\\\\skills\\\\impeccable\\\\scripts\\\\concept-seed.mjs' --scope surface --mode persuade)",
+      "Bash(node 'C:\\\\Users\\\\raits\\\\.claude\\\\skills\\\\impeccable\\\\scripts\\\\serve-question.mjs' --schema)",
+      "Bash(node 'C:\\\\Users\\\\raits\\\\.claude\\\\skills\\\\impeccable\\\\scripts\\\\concept-seed.mjs' --scope surface --mode persuade --from d1fe117a --candidate-count 7)",
+      "Bash(echo \"exit=$?\")",
+      "Read(//tmp/**)",
+      "Bash(node 'C:\\\\Users\\\\raits\\\\.claude\\\\skills\\\\impeccable\\\\scripts\\\\serve-question.mjs' --wait --key ff2ccf35)",
+      "Bash(echo \"EXIT=$?\")"
+    ]
+  }
+}
